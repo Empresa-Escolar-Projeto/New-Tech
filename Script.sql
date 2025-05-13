@@ -14,7 +14,7 @@ Senha varchar(200) not null
 );
 
 create  table Produtos(
-Id int primary  key not null,
+Id int primary  key auto_increment not null,
 Nome varchar(200) not null,
 Descricao varchar(200) not null,
 Preco decimal(10,2) not null,
