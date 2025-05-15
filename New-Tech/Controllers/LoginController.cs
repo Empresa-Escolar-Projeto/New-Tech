@@ -5,23 +5,34 @@ using New_Tech.Repositorio;
 
 namespace New_Tech.Controllers
 {
-    public class ClientesController : Controller
+    public class LoginController : Controller
     {
         private readonly LoginRepositorio _loginRepositorio;
 
-        public ClientesController(LoginRepositorio loginRepositorio)
+        public LoginController(LoginRepositorio loginRepositorio)
         {
             _loginRepositorio = loginRepositorio;
         }
 
-        public IActionResult ChecarUsuario(string email)
+
+        public IActionResult ChecarUsuario()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult ChecarUsuario(string email, string senha)
         {
             var usuario = _loginRepositorio.ObterUsuario(email);
-            if (usuario == null)
+            if (usuario != null && usuario.Senha == senha)
             {
-                return NotFound();
+                return RedirectToAction("Index", "Produto");
             }
-            return View(usuario);
+
+            ModelState.AddModelError("", "Erro, informações invalidas");
+            return View();
         }
     }
 }

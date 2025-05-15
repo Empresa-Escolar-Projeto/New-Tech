@@ -42,7 +42,7 @@ namespace New_Tech.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarProduto(int id, [Bind("Id, Nome, Descricao, Qauntidade")] Produto produto)
+        public IActionResult EditarProduto(int id, [Bind("Id, Nome,Descricao,Preco,Qauntidade")] Produto produto)
         {
             if (id != produto.Id)
             {
